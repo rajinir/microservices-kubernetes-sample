@@ -1,0 +1,15 @@
+<h2>Tasks Microservice</h2>
+<h4>Add Task For User<h4>
+<form action="/new" method="POST">
+ User Id: <input type="text" name="userid"/><br>
+ Name: <input type="text" name="name"></input><br>
+ Description: <input type="text" name="description"></input><br>
+<br>
+  <input type="submit"></input>
+</form>
+
+<h2>Task List</h2>
+<p> User, Task, Description </p>
+{% for item in items %}
+  <p> {{item.user}}, {{ item.name }}, {{ item.description }} </p>
+{% endfor %}

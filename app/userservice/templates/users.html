@@ -1,0 +1,16 @@
+<h2> Users Microservice</h2>
+<h4>Add User</h4>
+<form action="/new" method="POST">
+ User Id: <input type="text" name="userid"/><br>
+ Name: <input type="text" name="name"></input><br>
+ Title: <input type="text" name="title"></input><br>
+ Department: <input type="text"name="department"></input><br>
+<br>
+  <input type="submit" name="Add"></input>
+</form>
+
+<h2>User List</h2>
+<p>User Id, Name, Title, Department</p>
+{% for item in items %}
+  <p>{{item.userid }}, {{ item.name }}, {{ item.title }}, {{ item.department }}<p>
+{% endfor %}
