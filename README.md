@@ -18,31 +18,27 @@ install_pre-reqs.sh
 
 ### Deploy Minikube 
 
-Install minikube and kubectl 
+#### Install minikube and kubectl 
 
 ```
- setup\install_minikube.sh 
-
+setup\install_minikube.sh 
 ```
 Or 
 
-Install minikube, kubectl 
+#### Install minikube, kubectl 
+
+Install kubectl
 
 ```
 curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl 
-
 chmod +x ./kubectl 
-
 sudo mv ./kubectl /usr/local/bin/kubectl 
 ```
 
 Install minikube 
-
 ```
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 
-
 chmod +x minikube 
-
 sudo mv minikube /usr/local/bin/ 
 ```
 
@@ -51,17 +47,17 @@ Start minikube– takes few minutes(3-4 mins ). Downloads the minikube iso VM bo
 ```
 $minikube start 
 ```
+
 Run minikube status, minikube – vm is at ip 198.168.99.100 
 
 ```
 $minikube status 
 ```
+
 Run minikube ssh and check the images 
 ```
 minikube ssh 
-
 docker images 
-
 exit 
 ```
 
@@ -72,15 +68,12 @@ $minikube dashboard
 ```
 
 Open aanother ssh window
-
 Run few kubectl commands 
 
 ```
-Kubectl get deployments 
-
-Kubectl get pods 
-
-Kubectl get service 
+kubectl get deployments 
+kubectl get pods 
+kubectl get service 
 ```
 
 ## Deploy MongoDB Pod  
@@ -90,6 +83,7 @@ Deploy the mongodb in a pod using the script build_and_deploy_mongo.sh or run ea
 ```
 cd microservers-kubernetes-sample 
 ```
+
 Set the docker env 
 ```
 eval $(minikube docker env) 
@@ -99,10 +93,13 @@ Pull the mongo latest container image into the docker
 ```
 docker pull mongo:latest 
 ```
+
 List the images and verify 
+
 ```
-Docker images | grep mongo 
-``
+docker images | grep mongo 
+```
+
 Now cd kubernetes folder 
 
 ```
@@ -119,7 +116,9 @@ Expose the deployment as a service
 ````
 kubectl expose deployment mongo –type=Nodeport 
 ```
+
 Now verify 
+
 ```
 kubectl get pv 
 
@@ -128,7 +127,6 @@ kubectl get pvc
 kubectl get deployment 
 
 kubectl get pods 
-
 ```
 
 Get the mongo db service url and noted own the port in the string (have to fix this hardcoded port) “http://192.168.99.100:<port>" 
@@ -145,7 +143,7 @@ Build and Deploy microservice apps tasks and users
 ```
 cd app/usersservice 
 
-Vi main.py and modify the port of mongodb 
+vi main.py and modify the port of mongodb 
 
 ```
 Repeat for tasksservice 
