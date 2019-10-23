@@ -2,7 +2,7 @@
 
 Hope you have a VM with ubuntu and atleast 2VCPUs, 8GB RAM and 30GB HardDisk
 
-##Pre-Reqs – Done
+## Pre-Reqs – Done
  
 Login using ssh and run the pre_reqs
 
@@ -14,9 +14,9 @@ cd microservices-kubernetes-sample/setup
 install_pre-reqs.sh 
 ```
 
-##Start Here 
+## Start Here 
 
-###Deploy Minikube 
+### Deploy Minikube 
 
 Install minikube and kubectl 
 
@@ -35,7 +35,9 @@ chmod +x ./kubectl
 
 sudo mv ./kubectl /usr/local/bin/kubectl 
 ```
+
 Install minikube 
+
 ```
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 
 
@@ -46,12 +48,12 @@ sudo mv minikube /usr/local/bin/
 
 Start minikube– takes few minutes(3-4 mins ). Downloads the minikube iso VM boot image, creates a tiny virtual box Vm with 2 CPUs, 2GB RAM and 20GB disk. Prepares kubernetes v1.6.0 which is the stable release, pulls the images into the docker engine, launches kubernetes etc.. 
 
-``
+```
 $minikube start 
-``
+```
 Run minikube status, minikube – vm is at ip 198.168.99.100 
 
-``
+```
 $minikube status 
 ```
 Run minikube ssh and check the images 
@@ -81,7 +83,7 @@ Kubectl get pods
 Kubectl get service 
 ```
 
-##Deploy MongoDB Pod  
+## Deploy MongoDB Pod  
 
 Deploy the mongodb in a pod using the script build_and_deploy_mongo.sh or run each command  
 
@@ -136,7 +138,7 @@ minikube service mongo –url
 
 ```
 
-##Deploy Users-Tasks Sample Application 
+## Deploy Users-Tasks Sample Application 
 
 Build and Deploy microservice apps tasks and users 
 
@@ -193,7 +195,7 @@ minikube service tasks-service –url
 
 ```
 
-##Test Sample Application 
+## Test Sample Application 
 
 Test the application in the browser 
 
