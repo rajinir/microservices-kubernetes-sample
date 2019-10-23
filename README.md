@@ -113,7 +113,8 @@ kubectl create –f mongo.yaml
 ```
 
 Expose the deployment as a service 
-````
+
+```
 kubectl expose deployment mongo –type=Nodeport 
 ```
 
