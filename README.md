@@ -25,9 +25,8 @@ setup\install_minikube.sh
 ```
 Or 
 
-#### Install minikube, kubectl 
 
-Install kubectl
+#### Install kubectl
 
 ```
 curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl 
@@ -35,12 +34,14 @@ chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl 
 ```
 
-Install minikube 
+#### Install minikube 
 ```
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 
 chmod +x minikube 
 sudo mv minikube /usr/local/bin/ 
 ```
+
+#### Minikube 
 
 Start minikube– takes few minutes(3-4 mins ). Downloads the minikube iso VM boot image, creates a tiny virtual box Vm with 2 CPUs, 2GB RAM and 20GB disk. Prepares kubernetes v1.6.0 which is the stable release, pulls the images into the docker engine, launches kubernetes etc.. 
 
