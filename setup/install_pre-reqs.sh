@@ -1,7 +1,7 @@
 #update and install Pre-reqs
 echo "Install Prereqs"
 sudo apt-get update
-sudo apt-get install ntp
+sudo apt-get install -y ntp
 sudo apt-get install -y apt-transport-https
 sudo apt-get install -y firefox
 sudo apt-get install -y xdg-utils
