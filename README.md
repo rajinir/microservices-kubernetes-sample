@@ -16,7 +16,6 @@ install_pre-reqs.sh
 
 ## Start Here 
 
-<<<<<<< HEAD
 ### Section1. Deploy Minikube 
 
 #### 1a. Install minikube and kubectl 
