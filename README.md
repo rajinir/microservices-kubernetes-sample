@@ -16,9 +16,9 @@ install_pre-reqs.sh
 
 ## Start Here 
 
-### Section1. Deploy Minikube 
+### Section1. Deploy Minikube and Kubectl
 
-#### 1a. Install minikube and kubectl 
+1. Install minikube and kubectl 
 
 ```
 setup\install_minikube.sh 
@@ -26,7 +26,7 @@ setup\install_minikube.sh
 Or 
 
 
-#### 1. Install kubectl
+2. Install kubectl
 
 ```
 curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl 
@@ -34,14 +34,14 @@ chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl 
 ```
 
-#### 2. Install minikube 
+3. Install minikube 
 ```
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 
 chmod +x minikube 
 sudo mv minikube /usr/local/bin/ 
 ```
 
-#### 1b. Minikube 
+### Section2. Minikube 
 
 1. Start minikube– takes few minutes(3-4 mins ). Downloads the minikube iso VM boot image, creates a tiny virtual box Vm with 2 CPUs, 2GB RAM and 20GB disk. Prepares kubernetes v1.6.0 which is the stable release, pulls the images into the docker engine, launches kubernetes etc.. 
 
@@ -77,7 +77,7 @@ kubectl get pods
 kubectl get service 
 ```
 
-## Section2. Deploy MongoDB Pod  
+## Section3. Deploy MongoDB Pod  
 
 1. Deploy the mongodb in a pod using the script build_and_deploy_mongo.sh or run each command  
 
@@ -138,7 +138,7 @@ minikube service mongo –url
 
 ```
 
-## Section3. Deploy Users-Tasks Sample Application 
+## Section4. Deploy Users-Tasks Sample Application 
 
 1. Build and Deploy microservice apps tasks and users 
 
