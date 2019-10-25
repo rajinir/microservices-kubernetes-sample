@@ -2,9 +2,9 @@
 
 Hope you have a VM with ubuntu and atleast 2VCPUs, 8GB RAM and 30GB HardDisk
 
-## Pre-Reqs – Done
+## Section0. Pre-Reqs – Done
  
-Login using ssh and run the pre_reqs
+1. Login using ssh and run the pre_reqs
 
 ```
 git clone https://github.com/rajinir/microservices-kubernetes-sample 
@@ -14,9 +14,8 @@ cd microservices-kubernetes-sample/setup
 install_pre-reqs.sh 
 ```
 
-## Start Here 
 
-### Section1. Deploy Minikube and Kubectl
+## Section1. Deploy Minikube and Kubectl
 
 1. Install minikube and kubectl 
 
@@ -41,7 +40,7 @@ chmod +x minikube
 sudo mv minikube /usr/local/bin/ 
 ```
 
-### Section2. Minikube 
+## Section2. Minikube 
 
 1. Start minikube– takes few minutes(3-4 mins ). Downloads the minikube iso VM boot image, creates a tiny virtual box Vm with 2 CPUs, 2GB RAM and 20GB disk. Prepares kubernetes v1.6.0 which is the stable release, pulls the images into the docker engine, launches kubernetes etc.. 
 
@@ -197,7 +196,7 @@ minikube service tasks-service –url
 
 ## Section4. Test Sample Application 
 
-Test the application in the browser 
+1. Test the application in the browser 
 
 ```
 minikube service users-service 
