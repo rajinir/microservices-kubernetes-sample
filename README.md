@@ -16,9 +16,10 @@ install_pre-reqs.sh
 
 ## Start Here 
 
-### Deploy Minikube 
+<<<<<<< HEAD
+### Section1. Deploy Minikube 
 
-#### Install minikube and kubectl 
+#### 1a. Install minikube and kubectl 
 
 ```
 setup\install_minikube.sh 
@@ -26,7 +27,7 @@ setup\install_minikube.sh
 Or 
 
 
-#### Install kubectl
+#### 1. Install kubectl
 
 ```
 curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl 
@@ -34,42 +35,42 @@ chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl 
 ```
 
-#### Install minikube 
+#### 2. Install minikube 
 ```
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 
 chmod +x minikube 
 sudo mv minikube /usr/local/bin/ 
 ```
 
-#### Minikube 
+#### 1b. Minikube 
 
-Start minikube– takes few minutes(3-4 mins ). Downloads the minikube iso VM boot image, creates a tiny virtual box Vm with 2 CPUs, 2GB RAM and 20GB disk. Prepares kubernetes v1.6.0 which is the stable release, pulls the images into the docker engine, launches kubernetes etc.. 
+1. Start minikube– takes few minutes(3-4 mins ). Downloads the minikube iso VM boot image, creates a tiny virtual box Vm with 2 CPUs, 2GB RAM and 20GB disk. Prepares kubernetes v1.6.0 which is the stable release, pulls the images into the docker engine, launches kubernetes etc.. 
 
 ```
 $minikube start 
 ```
 
-Run minikube status, minikube – vm is at ip 198.168.99.100 
+2. Run minikube status, minikube – vm is at ip 198.168.99.100 
 
 ```
 $minikube status 
 ```
 
-Run minikube ssh and check the images 
+3. Run minikube ssh and check the images 
 ```
 minikube ssh 
 docker images 
 exit 
 ```
 
-Bring up the dashboard 
+4. Bring up the dashboard 
 
 ```
 $minikube dashboard  
 ```
 
-Open aanother ssh window
-Run few kubectl commands 
+5. Open aanother ssh window
+6. Run few kubectl commands 
 
 ```
 kubectl get deployments 
@@ -77,49 +78,49 @@ kubectl get pods
 kubectl get service 
 ```
 
-## Deploy MongoDB Pod  
+## Section2. Deploy MongoDB Pod  
 
-Deploy the mongodb in a pod using the script build_and_deploy_mongo.sh or run each command  
+1. Deploy the mongodb in a pod using the script build_and_deploy_mongo.sh or run each command  
 
 ```
 cd microservers-kubernetes-sample 
 ```
 
-Set the docker env 
+2. Set the docker env 
 ```
 eval $(minikube docker env) 
 ```
 
-Pull the mongo latest container image into the docker 
+3. Pull the mongo latest container image into the docker 
 ```
 docker pull mongo:latest 
 ```
 
-List the images and verify 
+4. List the images and verify 
 
 ```
 docker images | grep mongo 
 ```
 
-Now cd kubernetes folder 
+5. Now cd kubernetes folder 
 
 ```
 cd kubernetes 
 ```
 
-Deploy the mongo into kubernetes, open mongo.yaml and learn about persistant volume, persistant volume Cliams etc... 
+6. Deploy the mongo into kubernetes, open mongo.yaml and learn about persistant volume, persistant volume Cliams etc... 
 
 ```
 kubectl create –f mongo.yaml 
 ```
 
-Expose the deployment as a service 
+7. Expose the deployment as a service 
 
 ```
 kubectl expose deployment mongo –type=Nodeport 
 ```
 
-Now verify 
+8. Now verify 
 
 ```
 kubectl get pv 
@@ -131,16 +132,16 @@ kubectl get deployment
 kubectl get pods 
 ```
 
-Get the mongo db service url and noted own the port in the string (have to fix this hardcoded port) “http://192.168.99.100:<port>" 
+9. Get the mongo db service url and noted own the port in the string (have to fix this hardcoded port) “http://192.168.99.100:<port>" 
 
 ```
 minikube service mongo –url 
 
 ```
 
-## Deploy Users-Tasks Sample Application 
+## Section3. Deploy Users-Tasks Sample Application 
 
-Build and Deploy microservice apps tasks and users 
+1. Build and Deploy microservice apps tasks and users 
 
 ```
 cd app/usersservice 
@@ -148,11 +149,11 @@ cd app/usersservice
 vi main.py and modify the port of mongodb 
 
 ```
-Repeat for tasksservice 
+2. Repeat for tasksservice 
 
-Examine the code in the userservice and taskservice – main.py, requirements.txt, DokcerFile etc 
+3. Examine the code in the userservice and taskservice – main.py, requirements.txt, DokcerFile etc 
 
-Build the docker images of the users and tasks microservices ( can run build_and_deploy.sh or commands below) 
+4. Build the docker images of the users and tasks microservices ( can run build_and_deploy.sh or commands below) 
 
 ```
 cd app/userservice 
@@ -169,7 +170,7 @@ cd .. && cd ..
 
 ```
 
-Apply the deployment files 
+5. Apply the deployment files 
 
 ```
 cd kubernetes 
@@ -180,7 +181,7 @@ kubectl apply -f deployment_tasks.yaml
 
 ```
 
-Verify deployments 
+6. Verify deployments 
 
 ```
 kubectl get pods 
@@ -195,7 +196,7 @@ minikube service tasks-service –url
 
 ```
 
-## Test Sample Application 
+## Section4. Test Sample Application 
 
 Test the application in the browser 
 
