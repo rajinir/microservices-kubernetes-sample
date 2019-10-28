@@ -190,7 +190,7 @@ minikube service tasks-service –url
 
 ```
 
-## Section4. Test Sample Application 
+## Section5. Test Sample Application 
 
 1. Test the application in the browser 
 
