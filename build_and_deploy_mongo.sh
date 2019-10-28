@@ -9,12 +9,9 @@ docker images
 
 echo "Now deploy the mongo in kubernetes"
 kubectl create -f mongo.yaml
-kubectl expose deployment mongo --type=NodePort
-minikube service mongo --url
+kubectl apply -f mongo-service.yaml 
 
 cd ..
-
-docker images | grep mongo
 kubectl get deployment
 kubectl get pods
 minikube service mongo --url

@@ -115,7 +115,7 @@ kubectl create –f mongo.yaml
 7. Expose the deployment as a service 
 
 ```
-kubectl expose deployment mongo –type=Nodeport 
+kubectl apply -f mongo-service.yaml 
 ```
 
 8. Now verify 
@@ -130,7 +130,7 @@ kubectl get deployment
 kubectl get pods 
 ```
 
-9. Get the mongo db service url and noted own the port in the string (have to fix this hardcoded port) “http://192.168.99.100:<port>" 
+9. Get the mongo db service url  
 
 ```
 minikube service mongo –url 
@@ -142,16 +142,12 @@ minikube service mongo –url
 1. Build and Deploy microservice apps tasks and users 
 
 ```
-cd app/usersservice 
-
-vi main.py and modify the port of mongodb 
-
+cd app
 ```
-2. Repeat for tasksservice 
 
-3. Examine the code in the userservice and taskservice – main.py, requirements.txt, DokcerFile etc 
+2. Examine the code in the userservice and taskservice – main.py, requirements.txt, DokcerFile etc 
 
-4. Build the docker images of the users and tasks microservices ( can run build_and_deploy.sh or commands below) 
+3. Build the docker images of the users and tasks microservices ( can run build_and_deploy.sh or commands below) 
 
 ```
 cd app/userservice 
