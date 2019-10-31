@@ -190,13 +190,13 @@ cd app
 ```
 cd app/userservice 
 
-docker build –f Dockerfile –t users:latest 
+docker build -f Dockerfile -t users:latest .
 
 cd ..  
 
 cd app/taskservice 
 
-docker build –f Dockerfile –t tasks:latest 
+docker build -f Dockerfile -t tasks:latest .
 
 cd .. && cd .. 
 
