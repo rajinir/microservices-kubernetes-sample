@@ -1,10 +1,11 @@
 # microservices-kubernetes-sample
 
-Hope you have a VM with ubuntu and atleast 2VCPUs, 8GB RAM and 30GB HardDisk
+Hope you have a VM with ubuntu and atleast 2VCPUs, 16GB RAM and 30GB HardDisk
 
 ## Section1. Pre-Reqs – Done
  
-1. Login using ssh and run the pre_reqs
+1. Login using ssh and run the pre_reqs script
+
 
 ```
 git clone https://github.com/rajinir/microservices-kubernetes-sample 
@@ -19,60 +20,83 @@ install_pre-reqs.sh
 
 1. Install minikube and kubectl 
 
+Run the script install_minikube.sh 
+
 ```
 setup\install_minikube.sh 
 ```
-Or 
 
 
-2. Install kubectl
+Or run them individually
+
+
+2. Installing kubectl
+
+Download latest stable release of kubectl and install
+
 
 ```
 curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl 
 chmod +x ./kubectl 
 sudo mv ./kubectl /usr/local/bin/kubectl 
+
+```
+
+Test to ensure the version you installed is up-to-date:
+
+```
+kubectl version
+
 ```
 
 3. Install minikube 
+
+Installing minikube via directl download
+
 ```
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 
 chmod +x minikube 
 sudo mv minikube /usr/local/bin/ 
 ```
 
-## Section3. Minikube 
+## Section3. Running Minikube 
 
-1. Start minikube– takes few minutes(3-4 mins ). Downloads the minikube iso VM boot image, creates a tiny virtual box Vm with 2 CPUs, 2GB RAM and 20GB disk. Prepares kubernetes v1.6.0 which is the stable release, pulls the images into the docker engine, launches kubernetes etc.. 
+1. Start minikube and create a cluster
 
-```
-$minikube start 
-
-or for more details
-
-$minikube start -v=10
-```
-
-2. Run minikube status, minikube – vm is at ip 198.168.99.100 
+Takes few minutes(3-4 mins ). Downloads the minikube iso VM boot image, creates a tiny virtual box Vm with 2 CPUs, 2GB RAM and 20GB disk. Prepares kubernetes v1.6.0 which is the stable release, pulls the images into the docker engine, launches kubernetes etc.. 
 
 ```
-$minikube status 
+minikube start 
+
+or for more details use the verbose option
+
+minikube start -v=10
 ```
 
-3. Run minikube ssh and check the images 
+2. Run minikube status and verify, minikube – vm is at ip 198.168.99.100 
+
+```
+minikube status 
+```
+
+3. Run minikube ssh and check the images in the local docker engine
 ```
 minikube ssh 
 docker images 
 exit 
 ```
 
-4. Bring up the dashboard 
+4. Bring up the minikube dashboard and explore
 
 ```
-$minikube dashboard  
+minikube dashboard  
+bg&
+
 ```
 
-5. Open aanother ssh window
-6. Run few kubectl commands 
+5. Interact with kube ctl 
+
+Run few kubectl commands 
 
 ```
 kubectl get deployments 
@@ -82,15 +106,27 @@ kubectl get service
 
 ## Section4. Deploy MongoDB Pod  
 
+To setup mongodb on kubernets, you need these descriptors 
+Examing the mongo.yaml and mongo-service.yaml
+
+- PersistantVolume
+- PersistantCliam
+- Deployment 
+- Service 
+
 1. Deploy the mongodb in a pod using the script build_and_deploy_mongo.sh or run each command  
 
 ```
-cd microservers-kubernetes-sample 
+cd microservers-kubernetes-sample\kubernetes
+
+vi mongo.yaml
+vi mongo-service.yaml
+
 ```
 
-2. Set the docker env 
+2. Set the docker env to the docker engine running on the minikube
 ```
-eval $(minikube docker env) 
+eval $(minikube docker-env) 
 ```
 
 3. Pull the mongo latest container image into the docker 
@@ -104,25 +140,23 @@ docker pull mongo:latest
 docker images | grep mongo 
 ```
 
-5. Now cd kubernetes folder 
 
-```
-cd kubernetes 
-```
-
-6. Deploy the mongo into kubernetes, open mongo.yaml and learn about persistant volume, persistant volume Cliams etc... 
+5. Deploy the mongo into kubernetes, open mongo.yaml and learn about persistant volume, persistant volume Cliams etc... 
 
 ```
 kubectl create –f mongo.yaml 
 ```
 
-7. Expose the deployment as a service 
+6. Expose the deployment as a service 
 
 ```
 kubectl apply -f mongo-service.yaml 
 ```
 
-8. Now verify 
+7. Now verify the deployments
+
+Use kubectl and list the persistant volumes, cliams, deployments, services and pods
+
 
 ```
 kubectl get pv 
@@ -179,7 +213,7 @@ kubectl apply -f deployment_tasks.yaml
 
 ```
 
-6. Verify deployments 
+6. Verify deployments using kubectl
 
 ```
 kubectl get pods 
