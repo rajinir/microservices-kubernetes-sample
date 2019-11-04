@@ -99,8 +99,8 @@ bg&
 Run few kubectl commands 
 
 ```
-kubectl get deployments 
-kubectl get pods 
+kubectl get deployment 
+kubectl get pods
 kubectl get service 
 ```
 
